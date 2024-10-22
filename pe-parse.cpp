@@ -26,18 +26,18 @@ int peParse(const char* peFile) {
 
 	//Entry p., Image base, number of sec.
 	cout << "PE file was read success" << endl;
-	cout << "The entry point: " << ntHeader.OptionalHeader.AddressOfEntryPoint << endl;
-	cout << "The image base address: " << ntHeader.OptionalHeader.ImageBase << endl;
-	cout << "The number of section: " << ntHeader.FileHeader.NumberOfSections << endl;
+	cout << "The entry point: 0x" << ntHeader.OptionalHeader.AddressOfEntryPoint << endl;
+	cout << "The image base address: 0x" << ntHeader.OptionalHeader.ImageBase << endl;
+	cout << "The number of section: 0x" << ntHeader.FileHeader.NumberOfSections << endl;
 
 	for (int i = 0; i < ntHeader.FileHeader.NumberOfSections; i++) {
 
 		IMAGE_SECTION_HEADER secHeader;
 		file.read(reinterpret_cast<char*>(&secHeader), sizeof(IMAGE_SECTION_HEADER));
 
-		cout << "Name" << secHeader.Name << endl;
-		cout << "Start Address 0x" << secHeader.VirtualAddress << endl;
-		cout << "Size 0x" << secHeader.Misc.VirtualSize << endl;
+		cout << "Name: " << secHeader.Name << endl;
+		cout << "Start Address: 0x" << secHeader.VirtualAddress << endl;
+		cout << "Size: 0x" << secHeader.Misc.VirtualSize << endl;
 	}
 
 	file.close();
