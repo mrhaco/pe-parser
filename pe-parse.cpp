@@ -30,6 +30,8 @@ int peParse(const char* peFile) {
 	cout << "The image base address: 0x" << ntHeader.OptionalHeader.ImageBase << endl;
 	cout << "The number of section: 0x" << ntHeader.FileHeader.NumberOfSections << endl;
 
+	file.seekg(dos_header.e_lfanew + sizeof(IMAGE_NT_HEADERS), ios::beg);
+	
 	for (int i = 0; i < ntHeader.FileHeader.NumberOfSections; i++) {
 
 		IMAGE_SECTION_HEADER secHeader;
